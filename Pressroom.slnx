@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Pressroom.Contracts/Pressroom.Contracts.csproj" />
+    <Project Path="src/Pressroom.Editorial/Pressroom.Editorial.csproj" />
+    <Project Path="src/Pressroom.Gateway/Pressroom.Gateway.csproj" />
+    <Project Path="src/Pressroom.Review/Pressroom.Review.csproj" />
+  </Folder>
+</Solution>

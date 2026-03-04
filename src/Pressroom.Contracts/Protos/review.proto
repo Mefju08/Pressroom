@@ -1,0 +1,43 @@
+﻿syntax = "proto3";
+package review.v1;
+option csharp_namespace = "Pressroom.Contracts";
+
+import "google/protobuf/timestamp.proto";
+
+service ReviewGrpc {
+  rpc SubmitForReview (stream ArticleMessage) returns (stream ReviewStatusUpdate);
+  rpc GetReviewHistory (GetReviewHistoryRequest) returns (stream ReviewStatusUpdate);
+  rpc GetFinalStatus (GetFinalStatusRequest) returns (ReviewStatusUpdate);
+}
+
+enum ReviewStatus {
+  REVIEW_STATUS_UNSPECIFIED = 0;
+  REVIEW_STATUS_PENDING = 1;
+  REVIEW_STATUS_IN_REVIEW = 2;
+  REVIEW_STATUS_CHANGES_REQUESTED = 3;
+  REVIEW_STATUS_APPROVED = 4;
+  REVIEW_STATUS_REJECTED = 5;
+}
+
+message ArticleMessage{
+  bytes article_id = 1;
+  string title = 2;
+  string content = 3;
+  bytes author_id = 4;
+  google.protobuf.Timestamp submitted_at = 5;
+}
+
+message ReviewStatusUpdate{
+  bytes article_id = 1;
+  ReviewStatus status = 2;
+  string reviewer_comment = 3;
+  google.protobuf.Timestamp updated_at = 4;
+}
+
+message GetReviewHistoryRequest{
+  bytes article_id = 1;
+}
+
+message GetFinalStatusRequest{
+  bytes article_id = 1;
+}

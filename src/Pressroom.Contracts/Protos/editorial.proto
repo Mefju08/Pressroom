@@ -1,0 +1,31 @@
+﻿syntax = "proto3";
+package editorial.v1;
+option csharp_namespace = "Pressroom.Contracts";
+
+import "google/protobuf/timestamp.proto";
+import "review.proto";
+
+service EditorialGrpc {
+  rpc SubmitArticle (SubmitArticleRequest) returns (SubmitArticleResponse);
+  rpc GetArticleStatus (GetArticleStatusRequest) returns (review.v1.ReviewStatusUpdate);
+  rpc GetArticleHistory (GetArticleHistoryRequest) returns (stream review.v1.ReviewStatusUpdate);
+}
+
+message SubmitArticleRequest {
+  string title = 1;
+  string content = 2;
+  bytes author_id = 3;
+}
+
+message SubmitArticleResponse {
+  bytes article_id = 1;
+  google.protobuf.Timestamp submitted_at = 2;
+}
+
+message GetArticleStatusRequest {
+  bytes article_id = 1;
+}
+
+message GetArticleHistoryRequest {
+  bytes article_id = 1;
+}
