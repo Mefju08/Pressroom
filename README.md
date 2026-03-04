@@ -1,6 +1,6 @@
 ﻿# Pressroom
 
-Projekt Pressroom to platforma mikroserwisowa do zgłaszania i recenzowania artykułów. Komunikacja między serwisami odbywa się za pomocą protokołu gRPC, a dostęp dla użytkowników zewnętrznych zapewnia bramka REST API.
+Projekt do nauki gRPC.
 
 ## Struktura projektów
 
